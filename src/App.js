@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Navbar, Button } from 'react-bootstrap'
 import './App.css'
 import { getRandomRace } from './logic'
+import {HttpRedirect} from './Components/httpRedirect'
 
 class App extends React.Component {
   goTo(route) {
@@ -21,6 +22,7 @@ class App extends React.Component {
 
     return (
       <div>
+        <HttpRedirect />
         <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
