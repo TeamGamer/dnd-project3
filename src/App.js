@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Navbar, Button } from 'react-bootstrap'
 import './App.css'
-import {getRandomRace} from './logic'
+import { getRandomRace } from './logic'
 
 class App extends React.Component {
   goTo(route) {
@@ -19,8 +19,6 @@ class App extends React.Component {
   render() {
     const { isAuthenticated } = this.props.auth
 
-    const authenticated = isAuthenticated()
-
     return (
       <div>
         <Navbar fluid>
@@ -34,21 +32,30 @@ class App extends React.Component {
                 className: 'btn-margin',
                 onClick: () => this.goTo.bind(this, 'home')
               }}
-            >Home</Button>
+            >
+              Home
+            </Button>
+            {isAuthenticated() && (
+              <Button onClick={this.logout.bind(this)} bsStyle="primary" className="btn-margin">
+                Log Out
+              </Button>
+            )}
+            {!isAuthenticated() && (
+              <Button onClick={this.login.bind(this)} bsStyle="primary" className="btn-margin">
+                Log In
+              </Button>
+            )}
             <Button
               {...{
-                bsStyle: 'primary',
+                bsStyle: 'info',
                 className: 'btn-margin',
-                onClick: () => (authenticated ? this.logout.bind(this) : this.login.bind(this))
+                onClick: () => {
+                  getRandomRace()
+                }
               }}
-            >{authenticated ? 'Log Out' : 'Log In'}</Button>
-            <Button
-            {...{
-              bsStyle: 'info',
-              className: 'btn-margin',
-              onClick: () => {getRandomRace()}
-            }}
-            >Fetch Races</Button>
+            >
+              Fetch Races
+            </Button>
           </Navbar.Header>
         </Navbar>
       </div>
