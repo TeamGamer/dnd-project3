@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import loading from './loading.svg';
+import React, { Component } from 'react'
+import loading from './loading.svg'
 
 class Callback extends Component {
   render() {
@@ -13,15 +13,15 @@ class Callback extends Component {
       bottom: 0,
       left: 0,
       right: 0,
-      backgroundColor: 'white',
+      backgroundColor: 'white'
     }
 
     return (
       <div style={style}>
-        <img src={loading} alt="loading"/>
+        <img src={loading} alt="loading" />
       </div>
-    );
+    )
   }
 }
 
-export default Callback;
+export default Callback
