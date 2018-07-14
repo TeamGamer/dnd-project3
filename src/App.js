@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Navbar, Button } from 'react-bootstrap'
 import './App.css'
+import {getRandomRace} from './logic'
 
 class App extends React.Component {
   goTo(route) {
@@ -31,18 +32,23 @@ class App extends React.Component {
               {...{
                 bsStyle: 'primary',
                 className: 'btn-margin',
-                onClick: () => this.goTo.bind(this, 'home'),
-                value: 'Home'
+                onClick: () => this.goTo.bind(this, 'home')
               }}
-            />
+            >Home</Button>
             <Button
               {...{
                 bsStyle: 'primary',
                 className: 'btn-margin',
-                onClick: () => (authenticated ? this.logout.bind(this) : this.login.bind(this)),
-                value: authenticated ? 'Log Out' : 'Log In'
+                onClick: () => (authenticated ? this.logout.bind(this) : this.login.bind(this))
               }}
-            />
+            >{authenticated ? 'Log Out' : 'Log In'}</Button>
+            <Button
+            {...{
+              bsStyle: 'info',
+              className: 'btn-margin',
+              onClick: () => {getRandomRace()}
+            }}
+            >Fetch Races</Button>
           </Navbar.Header>
         </Navbar>
       </div>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "auth0-lock": "^11.7.2",
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
