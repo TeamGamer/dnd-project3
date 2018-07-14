@@ -6,7 +6,7 @@ class HttpRedirect extends React.Component {
       const newLocation = window.location.href.replace('https', 'http')
       window.location.href = newLocation
     }
-    return (<></>)
+    return <React.Fragment />
   }
 }
 
