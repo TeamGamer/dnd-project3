@@ -2,9 +2,8 @@ import React from "react";
 import "./RandomBtn.css";
 
 const RandomBtn = props => (
-  <button className="random-btn" {...props}>
-    Create Random Character
+  <button {...props} className="random-btn">
   </button>
 );
 
-export default RandomBtn;
+export default RandomBtn

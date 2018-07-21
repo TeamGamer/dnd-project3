@@ -1,1 +1,1 @@
-export { default } from "./RandomBtn";
+export {default} from "./RandomBtn";
