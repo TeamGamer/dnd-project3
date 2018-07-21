@@ -1,28 +1,29 @@
 {
   "name": "dnd-project3",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "auth0-lock": "^11.7.2",
-    "axios": "^0.18.0",
-    "bootstrap": "^4.1.1",
-    "history": "^4.7.2",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.3",
-    "react": "^16.4.1",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.4.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
-  },
+  "version": "1.0.0",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "prettier": "prettier \"./**/*.js?(x)\" --write"
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "npm run client",
+    "build": "node scripts/build.js",
+    "seedNews": "node scripts/seedNews.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd client && yarn"
   },
+  "repository": "https://github.com/TeamGamer/dnd-project3.git",
+  "author": "Stacy M <geekgirlbeta@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
-    "prettier": "^1.13.7"
+    "concurrently": "^3.6.0",
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "if-env": "^1.0.4",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.2.4"
   }
 }
