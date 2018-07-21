@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Navbar, Button } from 'react-bootstrap'
+import { Navbar } from 'react-bootstrap'
 import './App.css'
 import { getRandomRace } from './logic'
 import { HttpRedirect } from './Components/httpRedirect'
