@@ -8,6 +8,8 @@ import RandomBtn from './Components/RandomBtn'
 import Header from './Components/Header'
 
 class App extends React.Component {
+  state = { currentCharacter: undefined }
+
   goTo(route) {
     this.props.history.replace(`/${route}`)
   }
@@ -22,6 +24,7 @@ class App extends React.Component {
 
   render() {
     const { isAuthenticated } = this.props.auth
+    const { currentCharacter } = this.state
 
     return (
       <div>
@@ -56,7 +59,9 @@ class App extends React.Component {
                   bsStyle: 'info',
                   className: 'btn-margin',
                   onClick: () => {
-                    getRandomRace()
+                    getRandomRace().then(currentCharacter => {
+                      this.setState({ currentCharacter })
+                    })
                   }
                 }}
               >
@@ -65,8 +70,17 @@ class App extends React.Component {
             )}
           </Navbar.Header>
         </Navbar>
-
-        {isAuthenticated() && <Jumbotron />}
+        {currentCharacter && (
+          <Jumbotron>
+            <div>{currentCharacter.characterHP}</div>
+            <div>{currentCharacter.characterGender}</div>
+            <div>{currentCharacter.characterRace}</div>
+            <div>{currentCharacter.characterSR}</div>
+            <div>{currentCharacter.characterJob}</div>
+            <div>{currentCharacter.characterAttr}</div>
+            <div>{currentCharacter.characterProf}</div>
+          </Jumbotron>
+        )}
       </div>
     )
   }
