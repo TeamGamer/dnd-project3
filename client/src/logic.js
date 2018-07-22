@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-
-const getRandomRace = (newChar) => {
+const getRandomRace = newChar => {
   var race = Math.floor(Math.random() * 9) + 1
   var profession = Math.floor(Math.random() * 12) + 1
   var gender = Math.floor(Math.random() * 2) + 1
@@ -20,8 +19,21 @@ const getRandomRace = (newChar) => {
   var charProf = []
   var choiceArray = []
 
-  axios.get('http://www.dnd5eapi.co/api/races/' + race).then(response => {
-    const currentRace = response.data
+  const racePromise = axios.get('http://www.dnd5eapi.co/api/races/' + race).then(raceResponse => {
+    const currentRace = raceResponse.data
+    return currentRace
+  })
+
+  const classPromise = axios.get('http://www.dnd5eapi.co/api/classes/' + profession).then(classResponse => {
+    let newJob = classResponse.data
+    return newJob
+  })
+
+  return axios.all([racePromise, classPromise]).then(responses => {
+    const currentRace = responses.find(x => x.url.indexOf('races') > -1)
+    const newJob = responses.find(x => x.url.indexOf('classes') > -1)
+
+    // Process Race Response
     console.log(currentRace.name)
 
     modAttr = currentRace.ability_bonuses
@@ -53,56 +65,52 @@ const getRandomRace = (newChar) => {
     currentGender = gender === 1 ? 'Male' : 'Female'
     console.log(`Gender: ${currentGender}`)
 
+    // Process Class Response
+    console.log('Job:', newJob.name)
+    currentJob = newJob.name
+    charHitDie = newJob.hit_die
+    hp = charHitDie + combAttr[2]
+    console.log('HP:', hp)
 
-  axios.get("http://www.dnd5eapi.co/api/classes/" + profession).then(response => {
-    let newJob = response.data;
-    console.log("Job:", newJob.name);
-    currentJob = newJob.name;
-    charHitDie = newJob.hit_die;
-    hp = charHitDie + combAttr[2];
-    console.log("HP:",hp);
-
-    var profLength = currentRace.starting_proficiencies.length;
+    var profLength = currentRace.starting_proficiencies.length
     for (var i = 0; i < profLength; i++) {
-      var cp = currentRace.starting_proficiencies[i];
-      charProf.push(cp.name);
+      var cp = currentRace.starting_proficiencies[i]
+      charProf.push(cp.name)
     }
 
     if (currentRace.starting_proficiency_options) {
-      var profOpsLength = currentRace.starting_proficiency_options.from.length;
-      console.log(profOpsLength);
-      var numProfOps = currentRace.starting_proficiency_options.choose;
-      console.log(numProfOps);
-      var rprof = Math.floor(Math.random() * profOpsLength);
-      var newrprof = currentRace.starting_proficiency_options.from[rprof];
-      console.log(newrprof.name);
-      charProf.push(newrprof.name);
+      var profOpsLength = currentRace.starting_proficiency_options.from.length
+      console.log(profOpsLength)
+      var numProfOps = currentRace.starting_proficiency_options.choose
+      console.log(numProfOps)
+      var rprof = Math.floor(Math.random() * profOpsLength)
+      var newrprof = currentRace.starting_proficiency_options.from[rprof]
+      console.log(newrprof.name)
+      charProf.push(newrprof.name)
     }
-    var classProfLength = newJob.proficiencies.length;
+    var classProfLength = newJob.proficiencies.length
     for (i = 0; i < classProfLength; i++) {
-      cp = newJob.proficiencies[i];
-      charProf.push(cp.name);
+      cp = newJob.proficiencies[i]
+      charProf.push(cp.name)
     }
-    var choices = newJob.proficiency_choices[0];
-    var numChoices = choices.choose;
-    console.log(numChoices);
-    console.log(choices.from.length);
+    var choices = newJob.proficiency_choices[0]
+    var numChoices = choices.choose
+    console.log(numChoices)
+    console.log(choices.from.length)
     for (i = 0; i < choices.from.length; i++) {
-      choiceArray.push(choices.from[i].name);
+      choiceArray.push(choices.from[i].name)
     }
-    console.log(choiceArray.length);
-    var chosenArray = [];
+    console.log(choiceArray.length)
+    var chosenArray = []
     for (i = 0; i < numChoices; i++) {
-      var rnd = Math.floor(Math.random() * (choiceArray.length - 1));
-      chosenArray.push(choiceArray[rnd]);
-      choiceArray.splice(rnd, 1);
+      var rnd = Math.floor(Math.random() * (choiceArray.length - 1))
+      chosenArray.push(choiceArray[rnd])
+      choiceArray.splice(rnd, 1)
     }
 
     for (i = 0; i < chosenArray.length; i++) {
-      charProf.push(chosenArray[i]);
+      charProf.push(chosenArray[i])
     }
-
-
 
     newCharacter = {
       characterHP: hp,
@@ -112,35 +120,30 @@ const getRandomRace = (newChar) => {
       characterJob: currentJob,
       characterAttr: combAttr,
       characterProf: charProf
-    };
-    const newChar = newCharacter;
-    console.log(newChar);
-    console.log("--------------------");
-    console.log("--------------------");
-    console.log("--------------------");
-    console.log(newChar.characterHP);
-    console.log("--------------------");
-    console.log(newChar.characterGender);
-    console.log("--------------------");
-    console.log(newChar.characterRace);
-    console.log("--------------------");
-    console.log(newChar.characterSR);
-    console.log("--------------------");
-    console.log(newChar.characterJob);
-    console.log("--------------------");
-    console.log(newChar.characterAttr);
-    console.log("--------------------");
-    console.log(newChar.characterProf);
-    console.log("--------------------");
-    console.log("--------------------");
+    }
+    const newChar = newCharacter
     console.log(newChar)
-    return newChar;
-
-});
-})
-
+    console.log('--------------------')
+    console.log('--------------------')
+    console.log('--------------------')
+    console.log(newChar.characterHP)
+    console.log('--------------------')
+    console.log(newChar.characterGender)
+    console.log('--------------------')
+    console.log(newChar.characterRace)
+    console.log('--------------------')
+    console.log(newChar.characterSR)
+    console.log('--------------------')
+    console.log(newChar.characterJob)
+    console.log('--------------------')
+    console.log(newChar.characterAttr)
+    console.log('--------------------')
+    console.log(newChar.characterProf)
+    console.log('--------------------')
+    console.log('--------------------')
+    console.log(newChar)
+    return newChar
+  })
 }
 
-
 export { getRandomRace }
-
