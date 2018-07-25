@@ -3,9 +3,9 @@ import { Navbar } from 'react-bootstrap'
 import './App.css'
 import { getRandomRace } from './logic'
 import { HttpRedirect } from './Components/httpRedirect'
-import Jumbotron from './Components/Jumbotron'
 import RandomBtn from './Components/RandomBtn'
 import Header from './Components/Header'
+import { Row, Card, CardBody, CardTitle, CardSubtitle, CardText, Col } from 'reactstrap'
 
 class App extends React.Component {
   state = { currentCharacter: undefined }
@@ -70,17 +70,50 @@ class App extends React.Component {
             )}
           </Navbar.Header>
         </Navbar>
-        {currentCharacter && (
-          <Jumbotron>
-            <div>{currentCharacter.characterHP}</div>
-            <div>{currentCharacter.characterGender}</div>
-            <div>{currentCharacter.characterRace}</div>
-            <div>{currentCharacter.characterSR}</div>
-            <div>{currentCharacter.characterJob}</div>
-            <div>{currentCharacter.characterAttr}</div>
-            <div>{currentCharacter.characterProf}</div>
-          </Jumbotron>
-        )}
+        <Row>
+          <Col sm="8" className="offset-2">
+            <Col sm="6" className="offset-3">
+              {currentCharacter && (
+                <Card>
+                  <CardBody>
+                    <CardTitle>
+                      {currentCharacter.characterGender} {currentCharacter.characterRace}
+                    </CardTitle>
+                    <CardSubtitle>{currentCharacter.characterJob}</CardSubtitle>
+                  </CardBody>
+                  <img
+                    width="100%"
+                    src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                    alt="Character"
+                  />
+                  <CardBody>
+                    <Row>
+                    <Col s="6">
+                    <CardText>HP: {currentCharacter.characterHP}</CardText>
+                    <CardText>Strength: {currentCharacter.characterAttr[0]}</CardText>
+                    <CardText>Dexterity: {currentCharacter.characterAttr[1]}</CardText>
+                    <CardText>Constitution: {currentCharacter.characterAttr[2]}</CardText>
+                    <CardText>Inteligence: {currentCharacter.characterAttr[3]}</CardText>
+                    <CardText>Wisdom: {currentCharacter.characterAttr[4]}</CardText>
+                    <CardText>Charisma: {currentCharacter.characterAttr[5]}</CardText>
+                    </Col>
+                    <Col s="6">
+                    <CardText>
+                      Proficiencies:
+                      <ul>
+                        {currentCharacter.characterProf.map(function(name, index) {
+                          return <li key={index}>{name}</li>
+                        })}
+                      </ul>
+                    </CardText>
+                    </Col>
+                    </Row>
+                  </CardBody>
+                </Card>
+              )}
+            </Col>
+          </Col>
+        </Row>
       </div>
     )
   }

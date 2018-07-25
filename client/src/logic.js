@@ -10,7 +10,6 @@ const getRandomRace = newChar => {
   var currentSR
   var currentJob
   var newCharacter
-  var charName
   var baseAttr = []
   var modAttr = []
   var combAttr = []
@@ -73,7 +72,7 @@ const getRandomRace = newChar => {
     console.log('HP:', hp)
 
     var profLength = currentRace.starting_proficiencies.length
-    for (var i = 0; i < profLength; i++) {
+    for (i = 0; i < profLength; i++) {
       var cp = currentRace.starting_proficiencies[i]
       charProf.push(cp.name)
     }
