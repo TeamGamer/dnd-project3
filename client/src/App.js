@@ -72,14 +72,13 @@ class App extends React.Component {
         </Navbar>
         <Row>
           <Col sm="8" className="offset-2">
-            <Col sm="6" className="offset-3">
+            <Col sm="8" className="offset-2">
               {currentCharacter && (
                 <Card>
-                  <CardBody>
-                    <CardTitle>
-                      {currentCharacter.characterGender} {currentCharacter.characterRace}
-                    </CardTitle>
-                    <CardSubtitle>{currentCharacter.characterJob}</CardSubtitle>
+                  <CardBody className="equipment">
+                    <CardText>
+                      {currentCharacter.characterGender} {currentCharacter.characterRace} {currentCharacter.characterJob}
+                    </CardText>
                   </CardBody>
                   <img
                     width="100%"
@@ -88,7 +87,7 @@ class App extends React.Component {
                   />
                   <CardBody>
                     <Row>
-                    <Col s="6">
+                    <Col className="equipment" s="6">
                     <CardText>HP: {currentCharacter.characterHP}</CardText>
                     <CardText>Strength: {currentCharacter.characterAttr[0]}</CardText>
                     <CardText>Dexterity: {currentCharacter.characterAttr[1]}</CardText>
@@ -97,7 +96,7 @@ class App extends React.Component {
                     <CardText>Wisdom: {currentCharacter.characterAttr[4]}</CardText>
                     <CardText>Charisma: {currentCharacter.characterAttr[5]}</CardText>
                     </Col>
-                    <Col s="6">
+                    <Col className="equipment" s="6">
                     <CardText>
                       Proficiencies:
                       <ul>
