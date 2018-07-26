@@ -3,7 +3,7 @@ import { Navbar } from 'react-bootstrap'
 import './App.css'
 import { getRandomRace } from './logic'
 import { HttpRedirect } from './Components/httpRedirect'
-import RandomBtn from './Components/RandomBtn'
+import RandomBtn from './Components/randombtn'
 import Header from './Components/Header'
 import { Row, Card, CardBody, CardTitle, CardSubtitle, CardText, Col } from 'reactstrap'
 
