@@ -6,4 +6,4 @@ const RandomBtn = props => (
   </button>
 );
 
-export default RandomBtn
+export default RandomBtn;

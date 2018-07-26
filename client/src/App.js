@@ -44,19 +44,18 @@ class App extends React.Component {
               Home
             </RandomBtn> */}
             {isAuthenticated() && (
-              <RandomBtn onClick={this.logout.bind(this)} bsStyle="primary" className="btn-margin">
+              <RandomBtn onClick={this.logout.bind(this)} className="btn-margin">
                 Log Out
               </RandomBtn>
             )}
             {!isAuthenticated() && (
-              <RandomBtn onClick={this.login.bind(this)} bsStyle="primary" className="btn-margin">
+              <RandomBtn onClick={this.login.bind(this)} className="btn-margin">
                 Log In
               </RandomBtn>
             )}
             {isAuthenticated() && (
               <RandomBtn
                 {...{
-                  bsStyle: 'info',
                   className: 'btn-margin',
                   onClick: () => {
                     getRandomRace().then(currentCharacter => {
