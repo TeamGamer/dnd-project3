@@ -2,10 +2,10 @@ import * as React from 'react'
 import { Navbar } from 'react-bootstrap'
 import './App.css'
 import { getRandomRace } from './logic'
-import { HttpRedirect } from './components/httpRedirect'
 import RandomBtn from './components/randombtn'
+import { HttpRedirect } from './components/httpRedirect'
 import Header from './components/Header'
-import { Row, Card, CardBody, CardTitle, CardSubtitle, CardText, Col } from 'reactstrap'
+import { Row, Card, CardBody, CardText, Col } from 'reactstrap'
 
 class App extends React.Component {
   state = { currentCharacter: undefined }
@@ -76,7 +76,8 @@ class App extends React.Component {
                 <Card>
                   <CardBody className="equipment">
                     <CardText>
-                      {currentCharacter.characterGender} {currentCharacter.characterRace} {currentCharacter.characterJob}
+                      {currentCharacter.characterGender} {currentCharacter.characterRace}{' '}
+                      {currentCharacter.characterJob}
                     </CardText>
                   </CardBody>
                   <img
@@ -86,25 +87,25 @@ class App extends React.Component {
                   />
                   <CardBody>
                     <Row>
-                    <Col className="equipment" s="6">
-                    <CardText>HP: {currentCharacter.characterHP}</CardText>
-                    <CardText>Strength: {currentCharacter.characterAttr[0]}</CardText>
-                    <CardText>Dexterity: {currentCharacter.characterAttr[1]}</CardText>
-                    <CardText>Constitution: {currentCharacter.characterAttr[2]}</CardText>
-                    <CardText>Inteligence: {currentCharacter.characterAttr[3]}</CardText>
-                    <CardText>Wisdom: {currentCharacter.characterAttr[4]}</CardText>
-                    <CardText>Charisma: {currentCharacter.characterAttr[5]}</CardText>
-                    </Col>
-                    <Col className="equipment" s="6">
-                    <CardText>
-                      Proficiencies:
-                      <ul>
-                        {currentCharacter.characterProf.map(function(name, index) {
-                          return <li key={index}>{name}</li>
-                        })}
-                      </ul>
-                    </CardText>
-                    </Col>
+                      <Col className="equipment" s="6">
+                        <CardText>HP: {currentCharacter.characterHP}</CardText>
+                        <CardText>Strength: {currentCharacter.characterAttr[0]}</CardText>
+                        <CardText>Dexterity: {currentCharacter.characterAttr[1]}</CardText>
+                        <CardText>Constitution: {currentCharacter.characterAttr[2]}</CardText>
+                        <CardText>Inteligence: {currentCharacter.characterAttr[3]}</CardText>
+                        <CardText>Wisdom: {currentCharacter.characterAttr[4]}</CardText>
+                        <CardText>Charisma: {currentCharacter.characterAttr[5]}</CardText>
+                      </Col>
+                      <Col className="equipment" s="6">
+                        <CardText>
+                          Proficiencies:
+                          <ul>
+                            {currentCharacter.characterProf.map(function(name, index) {
+                              return <li key={index}>{name}</li>
+                            })}
+                          </ul>
+                        </CardText>
+                      </Col>
                     </Row>
                   </CardBody>
                 </Card>
