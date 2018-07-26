@@ -2,9 +2,9 @@ import * as React from 'react'
 import { Navbar } from 'react-bootstrap'
 import './App.css'
 import { getRandomRace } from './logic'
-import { HttpRedirect } from './Components/httpRedirect'
-import RandomBtn from './Components/randombtn'
-import Header from './Components/Header'
+import { HttpRedirect } from './components/httpRedirect'
+import RandomBtn from './components/randombtn'
+import Header from './components/Header'
 import { Row, Card, CardBody, CardTitle, CardSubtitle, CardText, Col } from 'reactstrap'
 
 class App extends React.Component {
