@@ -76,8 +76,17 @@ class App extends React.Component {
                 <Card>
                   <CardBody className="equipment">
                     <CardText>
-                      {currentCharacter.characterGender} {currentCharacter.characterRace}{' '}
+                      <div className='row'>
+                      <div className="col-6">
+                      {currentCharacter.characterGender} {currentCharacter.characterRace} <hr/>
                       {currentCharacter.characterJob}
+                      </div>
+                      <div className="col-6">
+                      <input className="input-char-text" type="text" name="charName" id="charName" placeholder="Character Name" />
+                      <hr/>
+                      <input type="button" className="char-name-button save text-right" name="save" value="Save" />
+                      </div>
+                      </div>
                     </CardText>
                   </CardBody>
                   <img
