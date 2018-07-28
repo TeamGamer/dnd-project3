@@ -39,7 +39,7 @@ a {
 }
 
 form {
-    border-radius: 20px 50px 20px 50px/50px 20px 50px 20px; 
+    border-radius: 20px 50px 20px 50px/50px 20px 50px 20px;
     background-color: #858585;
     padding: 20px;
     display: grid;
@@ -195,12 +195,17 @@ label {
     grid-template-columns: repeat(12, 1fr);
 }
 
+.save {
+  background-color: #525252 !important;
+  color: whitesmoke !important;
+}
+
 .card {
     border-radius: 20px 50px 20px 50px/50px 20px 50px 20px !important;
     background-color: #525252 !important;
     color: #383838 !important;
     font-weight: bold !important;
-    font-size: 20pt !important;
+    font-size: 25pt !important;
 }
 
 .name-form {
