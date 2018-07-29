@@ -218,11 +218,13 @@ label {
 }
 
 .input-char-text {
+  width: 100%;
   font-size: .75em;
   padding: 8px 25px;
   border: 1px solid #ccc;
   border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  resize: vertical;
 }
 
 .char-name-button {
