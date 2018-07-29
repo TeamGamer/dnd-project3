@@ -1,1 +1,1 @@
-export { default } from './randombtn'
+export { default } from './RandomBtn'

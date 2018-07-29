@@ -1,9 +1,6 @@
-import React from "react";
-import "./randombtn.css";
+import React from 'react'
+import './RandomBtn.css'
 
-const RandomBtn = props => (
-  <button {...props} className="random-btn">
-  </button>
-);
+const RandomBtn = props => <button {...props} className="random-btn" />
 
-export default RandomBtn;
+export default RandomBtn

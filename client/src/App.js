@@ -2,13 +2,15 @@ import * as React from 'react'
 import { Navbar } from 'react-bootstrap'
 import './App.css'
 import { getRandomRace } from './logic'
-import RandomBtn from './components/randombtn'
+import RandomBtn from './components/RandomBtn'
 import { HttpRedirect } from './components/httpRedirect'
 import Header from './components/Header'
 import { Row, Card, CardBody, CardText, Col } from 'reactstrap'
 
 class App extends React.Component {
-  state = { currentCharacter: undefined }
+  state = {
+    currentCharacter: undefined
+  }
 
   goTo(route) {
     this.props.history.replace(`/${route}`)
@@ -33,62 +35,72 @@ class App extends React.Component {
           <Navbar.Header>
             <Navbar.Brand>
               <Header />
-            </Navbar.Brand>
+            </Navbar.Brand>{' '}
             {/* <RandomBtn
-              {...{
-                bsStyle: 'primary',
-                className: 'btn-margin',
-                onClick: () => this.goTo.bind(this, 'home')
-              }}
-            >
-              Home
-            </RandomBtn> */}
+                      {...{
+                        bsStyle: 'primary',
+                        className: 'btn-margin',
+                        onClick: () => this.goTo.bind(this, 'home')
+                      }}
+                    >
+                      Home
+                    </RandomBtn> */}{' '}
             {isAuthenticated() && (
               <RandomBtn onClick={this.logout.bind(this)} className="btn-margin">
-                Log Out
+                Log Out{' '}
               </RandomBtn>
-            )}
+            )}{' '}
             {!isAuthenticated() && (
               <RandomBtn onClick={this.login.bind(this)} className="btn-margin">
-                Log In
+                Log In{' '}
               </RandomBtn>
-            )}
+            )}{' '}
             {isAuthenticated() && (
               <RandomBtn
                 {...{
                   className: 'btn-margin',
                   onClick: () => {
                     getRandomRace().then(currentCharacter => {
-                      this.setState({ currentCharacter })
+                      this.setState({
+                        currentCharacter
+                      })
                     })
                   }
                 }}
               >
-                Generate Random Character
+                Generate Random Character{' '}
               </RandomBtn>
-            )}
-          </Navbar.Header>
-        </Navbar>
+            )}{' '}
+          </Navbar.Header>{' '}
+        </Navbar>{' '}
         <Row>
           <Col sm="8" className="offset-2">
             <Col sm="8" className="offset-2">
+              {' '}
               {currentCharacter && (
                 <Card>
                   <CardBody className="equipment">
                     <CardText>
-                      <div className='row'>
-                      <div className="col-6">
-                      {currentCharacter.characterGender} {currentCharacter.characterRace} <hr/>
-                      {currentCharacter.characterJob}
-                      </div>
-                      <div className="col-6">
-                      <input className="input-char-text" type="text" name="charName" id="charName" placeholder="Character Name" />
-                      <hr/>
-                      <input type="button" className="char-name-button save text-right" name="save" value="Save" />
-                      </div>
-                      </div>
-                    </CardText>
-                  </CardBody>
+                      <div className="row">
+                        <div className="col-6">
+                          {' '}
+                          {currentCharacter.characterGender} {currentCharacter.characterRace} <hr />{' '}
+                          {currentCharacter.characterJob}{' '}
+                        </div>{' '}
+                        <div className="col-6">
+                          <input
+                            className="input-char-text"
+                            type="text"
+                            name="charName"
+                            id="charName"
+                            placeholder="Character Name"
+                          />
+                          <hr />
+                          <input type="button" className="char-name-button save text-right" name="save" value="Save" />
+                        </div>{' '}
+                      </div>{' '}
+                    </CardText>{' '}
+                  </CardBody>{' '}
                   <img
                     width="100%"
                     src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
@@ -97,31 +109,32 @@ class App extends React.Component {
                   <CardBody>
                     <Row>
                       <Col className="equipment" s="6">
-                        <CardText>HP: {currentCharacter.characterHP}</CardText>
-                        <CardText>Strength: {currentCharacter.characterAttr[0]}</CardText>
-                        <CardText>Dexterity: {currentCharacter.characterAttr[1]}</CardText>
-                        <CardText>Constitution: {currentCharacter.characterAttr[2]}</CardText>
-                        <CardText>Inteligence: {currentCharacter.characterAttr[3]}</CardText>
-                        <CardText>Wisdom: {currentCharacter.characterAttr[4]}</CardText>
-                        <CardText>Charisma: {currentCharacter.characterAttr[5]}</CardText>
-                      </Col>
+                        <CardText> HP: {currentCharacter.characterHP} </CardText>{' '}
+                        <CardText> Strength: {currentCharacter.characterAttr[0]} </CardText>{' '}
+                        <CardText> Dexterity: {currentCharacter.characterAttr[1]} </CardText>{' '}
+                        <CardText> Constitution: {currentCharacter.characterAttr[2]} </CardText>{' '}
+                        <CardText> Inteligence: {currentCharacter.characterAttr[3]} </CardText>{' '}
+                        <CardText> Wisdom: {currentCharacter.characterAttr[4]} </CardText>{' '}
+                        <CardText> Charisma: {currentCharacter.characterAttr[5]} </CardText>{' '}
+                      </Col>{' '}
                       <Col className="equipment" s="6">
                         <CardText>
                           Proficiencies:
                           <ul>
+                            {' '}
                             {currentCharacter.characterProf.map(function(name, index) {
-                              return <li key={index}>{name}</li>
-                            })}
-                          </ul>
-                        </CardText>
-                      </Col>
-                    </Row>
-                  </CardBody>
+                              return <li key={index}> {name} </li>
+                            })}{' '}
+                          </ul>{' '}
+                        </CardText>{' '}
+                      </Col>{' '}
+                    </Row>{' '}
+                  </CardBody>{' '}
                 </Card>
-              )}
-            </Col>
-          </Col>
-        </Row>
+              )}{' '}
+            </Col>{' '}
+          </Col>{' '}
+        </Row>{' '}
       </div>
     )
   }
