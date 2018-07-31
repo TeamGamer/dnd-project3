@@ -6,6 +6,7 @@ import RandomBtn from './components/RandomBtn'
 import { HttpRedirect } from './components/httpRedirect'
 import Header from './components/Header'
 import { Row, Card, CardBody, CardText, Col } from 'reactstrap'
+import Api from "./Api";
 
 class App extends React.Component {
   state = {
@@ -28,6 +29,18 @@ class App extends React.Component {
     const { isAuthenticated } = this.props.auth
     const { currentCharacter } = this.state
 
+    const saveChar = () => {
+      console.log(currentCharacter)
+      Api.saveCharacter({character: JSON.stringify(currentCharacter)}).then(results => {
+        console.log("Success!!")
+      })
+    }
+
+    const charName = event => {
+      currentCharacter.characterName = event.target.value
+      this.setState({currentCharacter})
+    }
+
     return (
       <div>
         <HttpRedirect />
@@ -36,15 +49,6 @@ class App extends React.Component {
             <Navbar.Brand>
               <Header />
             </Navbar.Brand>{' '}
-            {/* <RandomBtn
-                              {...{
-                                bsStyle: 'primary',
-                                className: 'btn-margin',
-                                onClick: () => this.goTo.bind(this, 'home')
-                              }}
-                            >
-                              Home
-                            </RandomBtn> */}{' '}
             {isAuthenticated() && (
               <RandomBtn onClick={this.logout.bind(this)} className="btn-margin">
                 Log Out{' '}
@@ -84,24 +88,36 @@ class App extends React.Component {
                       <div className="row">
                         <div className="col-6">
                           {' '}
-                          {currentCharacter.characterGender} {currentCharacter.characterRace} {' '}
+                          {currentCharacter.characterGender} {currentCharacter.characterRace}{' '}
                           {currentCharacter.characterJob}{' '}
                         </div>{' '}
                         <div className="col-6">
                           <input
+                            onBlur={charName}
                             className="input-char-text"
                             type="text"
                             name="charName"
                             id="charName"
                             placeholder="Character Name"
                           />
-                          <input type="button" className="char-name-button save text-right" name="save" value="Save" />
+                          <input
+                            type="button"
+                            onClick={saveChar}
+                            className="char-name-button save text-right"
+                            name="save"
+                            value="Save"
+                          />
                         </div>{' '}
                       </div>{' '}
                     </CardText>{' '}
                   </CardBody>{' '}
                   <CardBody>
-                    <img width="100%" src = {currentCharacter.characterImage} alt="Character" />
+                    <img
+                      className="img-responsive img-center"
+                      width="100%"
+                      src={currentCharacter.characterImage}
+                      alt="Character"
+                    />
                     <Row>
                       <Col className="equipment" s="6">
                         <CardText> HP: {currentCharacter.characterHP} </CardText>{' '}

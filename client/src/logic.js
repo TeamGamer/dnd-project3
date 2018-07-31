@@ -136,6 +136,7 @@ const getRandomRace = newChar => {
       characterJob: currentJob,
       characterAttr: combAttr,
       characterProf: charProf,
+      characterName: "",
       // This is what I'm having problems with, I'm not sure how to get the random image to show up, the path looks ok.
       characterImage: require(`./public/assets/images/${currentGender}/${currentRace.name}/${random_image_number}.jpg`)
     }
