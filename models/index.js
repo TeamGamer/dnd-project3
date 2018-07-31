@@ -1,3 +1,4 @@
 module.exports = {
-  Characters: require('./characters')
+
+  Characters: require("./characters")
 }
