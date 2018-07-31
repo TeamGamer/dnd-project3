@@ -84,7 +84,7 @@ class App extends React.Component {
                       <div className="row">
                         <div className="col-6">
                           {' '}
-                          {currentCharacter.characterGender} {currentCharacter.characterRace} <hr />{' '}
+                          {currentCharacter.characterGender} {currentCharacter.characterRace} {' '}
                           {currentCharacter.characterJob}{' '}
                         </div>{' '}
                         <div className="col-6">
@@ -95,14 +95,13 @@ class App extends React.Component {
                             id="charName"
                             placeholder="Character Name"
                           />
-                          <hr />
                           <input type="button" className="char-name-button save text-right" name="save" value="Save" />
                         </div>{' '}
                       </div>{' '}
                     </CardText>{' '}
                   </CardBody>{' '}
                   <CardBody>
-                    <img width="100%" src="{currentCharacter.characterImage}" alt="Character" />
+                    <img width="100%" src = {currentCharacter.characterImage} alt="Character" />
                     <Row>
                       <Col className="equipment" s="6">
                         <CardText> HP: {currentCharacter.characterHP} </CardText>{' '}
