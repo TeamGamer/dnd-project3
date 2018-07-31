@@ -111,12 +111,21 @@ const getRandomRace = newChar => {
       charProf.push(chosenArray[i])
     }
 
+    // Made an exception for the one folder which is the dragonborn female which does not have 20 images in it.
     var number_of_images = 20
 
     if (currentGender === 'Female' && currentRace.name === 'Dragonborn') {
       number_of_images = 12
     }
 
+    // Added random_image_number to grab a random number which will represent the image it's to pull
+    // Changed the images folders to just numbers so it's easier to get the random numbered image.
+    // path to images /static/media (like the header)
+    // Female folders: 1 = human, 2 = dwarf, 3 = elf, 4 = gnome, 5 = orc, 6 = tiefling, 7 = dragonborn
+    // Male folders: 1 = human, 2 = dwarf, 3 = elf, 4 = gnome, 5 = orc, 6 = tiefling, 7 = dragonborn
+    // Instead of looping through the file names, just need to grab the currentRace.name and current gender
+    // which will be the path (see below) and the randome number will be all we need to store and plug it into
+    // the path.
     var random_image_number = Math.floor(Math.random() * number_of_images) + 1
 
     newCharacter = {
@@ -127,7 +136,7 @@ const getRandomRace = newChar => {
       characterJob: currentJob,
       characterAttr: combAttr,
       characterProf: charProf,
-      // trying to get the image to show up.
+      // This is what I'm having problems with, I'm not sure how to get the random image to show up, the path looks ok.
       characterImage: `/static/media/${currentGender}/${currentRace.name}/${random_image_number}.jpg`
     }
     const newChar = newCharacter
