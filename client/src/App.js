@@ -37,14 +37,14 @@ class App extends React.Component {
               <Header />
             </Navbar.Brand>{' '}
             {/* <RandomBtn
-                      {...{
-                        bsStyle: 'primary',
-                        className: 'btn-margin',
-                        onClick: () => this.goTo.bind(this, 'home')
-                      }}
-                    >
-                      Home
-                    </RandomBtn> */}{' '}
+                              {...{
+                                bsStyle: 'primary',
+                                className: 'btn-margin',
+                                onClick: () => this.goTo.bind(this, 'home')
+                              }}
+                            >
+                              Home
+                            </RandomBtn> */}{' '}
             {isAuthenticated() && (
               <RandomBtn onClick={this.logout.bind(this)} className="btn-margin">
                 Log Out{' '}
@@ -101,12 +101,8 @@ class App extends React.Component {
                       </div>{' '}
                     </CardText>{' '}
                   </CardBody>{' '}
-                  <img
-                    width="100%"
-                    src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-                    alt="Character"
-                  />
                   <CardBody>
+                    <img width="100%" src="{currentCharacter.characterImage}" alt="Character" />
                     <Row>
                       <Col className="equipment" s="6">
                         <CardText> HP: {currentCharacter.characterHP} </CardText>{' '}

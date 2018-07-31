@@ -111,6 +111,14 @@ const getRandomRace = newChar => {
       charProf.push(chosenArray[i])
     }
 
+    var number_of_images = 20
+
+    if (currentGender === 'Female' && currentRace.name === 'Dragonborn') {
+      number_of_images = 12
+    }
+
+    var random_image_number = Math.floor(Math.random() * number_of_images) + 1
+
     newCharacter = {
       characterHP: hp,
       characterGender: currentGender,
@@ -118,7 +126,9 @@ const getRandomRace = newChar => {
       characterSR: currentSR,
       characterJob: currentJob,
       characterAttr: combAttr,
-      characterProf: charProf
+      characterProf: charProf,
+      // trying to get the image to show up.
+      characterImage: `/static/media/${currentGender}/${currentRace.name}/${random_image_number}.jpg`
     }
     const newChar = newCharacter
     console.log(newChar)
@@ -141,6 +151,9 @@ const getRandomRace = newChar => {
     console.log('--------------------')
     console.log('--------------------')
     console.log(newChar)
+    console.log('--------------------')
+    console.log('--------------------')
+    console.log(newChar.characterImage)
     return newChar
   })
 }
